@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Alert</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      color: #c0c0c0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 18px;
+      line-height: 1.5;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 720px;
+      padding: 30px;
+      border: 1px solid #333;
+      background: #111;
+    }
+
+    .header {
+      color: #ff4444;
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+      padding-bottom: 15px;
+    }
+
+    .terminal {
+      background: #000;
+      padding: 20px;
+      border: 1px solid #444;
+      margin-bottom: 25px;
+      min-height: 280px;
+      text-align: left;
+      white-space: pre-wrap;
+    }
+
+    .line {
+      margin: 6px 0;
+    }
+
+    .red { color: #ff6666; }
+    .yellow { color: #cccc44; }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: #1a1a1a;
+      color: #c0c0c0;
+      border: 1px solid #555;
+      font-size: 18px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .button:hover {
+      background: #222;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">WARNING: Unauthorized Access Detected</div>
+    
+    <div class="terminal" id="terminal">
+System breach detected on this device.
+
+IP address traced.
+User session compromised.
+
+Accessing:
+- Local files
+- Browser data
+- Saved credentials
+
+Progress: 
+[████████████████████] 92%
+
+Attempting to lock files...
+    </div>
+
+    <a href="h2.html"> <button class="button" onclick="recover()">Acknowledge and Restore Access</button>
+</a>
+  <div class="footer">
+      This is an April Fools demonstration. No actual access occurred.
+    </div>
+  </div>
+
+  <script>
+    const lines = [
+      "System breach detected on this device.",
+      "",
+      "IP address traced.",
+      "User session compromised.",
+      "",
+      "Accessing:",
+      "- Local files",
+      "- Browser data",
+      "- Saved credentials",
+      "",
+      "Progress: ",
+      "[████████████████████] 92%",
+      "",
+      "Attempting to lock files..."
+    ];
+
+    let index = 0;
+    const terminal = document.getElementById('terminal');
+
+    function typeLine() {
+      if (index < lines.length) {
+        const current = terminal.innerHTML;
+        terminal.innerHTML = current + (current ? '<br>' : '') + lines[index];
+        index++;
+        setTimeout(typeLine, 420);
+      }
+    }
+
+    // Start typing after a short delay
+    setTimeout(() => {
+      terminal.innerHTML = '';
+      typeLine();
+    }, 600);
+
+    function recover() {
+      if (confirm("System will now attempt recovery.\n\nContinue?")) {
+        terminal.innerHTML += '<br><br><span class="yellow">Recovery initiated...</span>';
+        
+        setTimeout(() => {
+          terminal.innerHTML += '<br><span class="red">Recovery complete.</span>';
+          
+          setTimeout(() => {
+            alert("Access restored.\n\nThis was an April Fools prank.\nNothing was actually accessed or changed.");
+          }, 800);
+        }, 1400);
+      }
+    }
+  </script>
+</body>
+</html>
